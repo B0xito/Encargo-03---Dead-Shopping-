@@ -1,0 +1,4 @@
+repository "Encargo 03 - Dead Shopping!@mherreravsquez@cloud"
+  path "/"
+    br "/main"
+    co "/main"
