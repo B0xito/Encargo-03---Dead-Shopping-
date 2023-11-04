@@ -15,6 +15,7 @@ public class CashRegister : MonoBehaviour
     #endregion
 
     [SerializeField] private GameObject bill;
+    public GameObject productCollided;
 
     void Start()
     {
@@ -30,6 +31,7 @@ public class CashRegister : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         ProductData productData = other.gameObject.GetComponent<ProductData>();
+        productCollided = other.gameObject;
         if (productData != null && actualMoney >= productData.productPrice)
         {
             actualMoney -= productData.productPrice;
