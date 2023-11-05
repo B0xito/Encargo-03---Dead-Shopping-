@@ -6,12 +6,14 @@ public class PlayerInteractions : MonoBehaviour
     Rigidbody playerRb;
     public float playerSpeed = 5f;
     public float playerJumpHeight = 5f;
+    Animator playerAnim;
     [SerializeField] private bool isGrounded;
     #endregion
 
     void Start()
     {
         playerRb = GetComponent<Rigidbody>();
+        playerAnim = GetComponent<Animator>();
     }
 
     void Update()
@@ -25,6 +27,15 @@ public class PlayerInteractions : MonoBehaviour
         float h = Input.GetAxis("Horizontal") * playerSpeed * Time.deltaTime;
         float v = Input.GetAxis("Vertical") * playerSpeed * Time.deltaTime;
         transform.Translate(h, 0 , v);
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+        {
+            playerAnim.SetFloat("Speed", 1);
+        }
+        else
+        {
+            playerAnim.SetFloat("Speed", 0);
+        }
         #endregion
 
         #region Jump

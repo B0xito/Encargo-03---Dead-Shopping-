@@ -12,7 +12,7 @@ public class FirstPersonCamera : MonoBehaviour
 
     #region ECONOMY VARIABLES
     Camera cam;
-    [SerializeField] float rayDistance = 2f;
+    [SerializeField] float rayDistance;
     [SerializeField] GameObject product;
     public LayerMask mask;
 
@@ -26,7 +26,7 @@ public class FirstPersonCamera : MonoBehaviour
         cam = GetComponent<Camera>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-
+        rayDistance = 1f;
     }
 
 
