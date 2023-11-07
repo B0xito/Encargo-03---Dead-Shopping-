@@ -26,16 +26,7 @@ public class PlayerInteractions : MonoBehaviour
         #region Movement
         float h = Input.GetAxis("Horizontal") * playerSpeed * Time.deltaTime;
         float v = Input.GetAxis("Vertical") * playerSpeed * Time.deltaTime;
-        transform.Translate(h, 0 , v);
-
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-        {
-            playerAnim.SetFloat("Speed", 1);
-        }
-        else
-        {
-            playerAnim.SetFloat("Speed", 0);
-        }
+        transform.Translate(h, 0 , v);       
         #endregion
 
         #region Jump

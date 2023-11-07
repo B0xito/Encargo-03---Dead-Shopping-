@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class FirstPersonCamera : MonoBehaviour
 {
@@ -21,12 +23,19 @@ public class FirstPersonCamera : MonoBehaviour
     [SerializeField] bool isDragging = false;
     #endregion
 
+    [SerializeField] Transform lower;
+    [SerializeField] Transform cart;
+    [SerializeField] bool drivingCart = false;
+
+    public GameObject pricePanel;
+    public TMP_Text productNameTxt;
+    public TMP_Text priceText;
+
     private void Start()
     {
         cam = GetComponent<Camera>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        rayDistance = 1f;
     }
 
 
@@ -54,9 +63,13 @@ public class FirstPersonCamera : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, rayDistance, mask))
         {
-            product = hit.transform.gameObject;
-            print(product.GetComponent<ProductData>().productName);
-            print(product.GetComponent<ProductData>().productPrice);
+            if (hit.transform.GetComponent<ProductData>())
+            {
+                product = hit.transform.gameObject;
+                productNameTxt.text = product.GetComponent<ProductData>().productName;
+                priceText.text = product.GetComponent<ProductData>().productPrice.ToString();
+                pricePanel.SetActive(true);
+            }
 
             #region GRABP RODUCTS
             if (hit.transform.tag == "Product" && Input.GetMouseButtonDown(0))
@@ -77,6 +90,28 @@ public class FirstPersonCamera : MonoBehaviour
                 }
             }
             #endregion
+
+            if (hit.transform.tag == "Shopping Cart" && Input.GetKeyDown(KeyCode.F))
+            {
+                drivingCart = !drivingCart;
+                if (drivingCart)
+                {
+                    cart = hit.transform;
+                    cart.GetComponent<Rigidbody>().isKinematic = true;
+                    cart.SetParent(lower);
+                    cart.localPosition = Vector3.zero;
+                }
+                else 
+                {
+                    cart.GetComponent<Rigidbody>().isKinematic = false;
+                    cart.SetParent(null);
+                    cart = null;
+                }
+            }
+        }
+        else
+        {
+            pricePanel.SetActive(false);
         }
         #endregion       
     }

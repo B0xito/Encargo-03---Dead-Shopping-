@@ -7,53 +7,90 @@ using System;
 
 public class ShoppingCart : MonoBehaviour
 {
-    [SerializeField] string[] shoppingList;
+    public List<ProductData> products = new List<ProductData>();
+    public int totalPrice;
+
+    public GameObject listPanel;
+    public TMP_Text listText;
+
+    #region MONEY TEXTS
+    [SerializeField] private int initialMoney;
+    [SerializeField] private int actualMoney;
+    [SerializeField] private TMPro.TMP_Text moneyText;
+    [SerializeField] private GameObject notMoney;
+
+    [SerializeField] private TMP_Text totalText;
+    [SerializeField] private TMP_Text cashText;
+    [SerializeField] private TMP_Text changeText;
+    #endregion
 
     private void Start()
     {
-        shoppingList = new string[10];
+        products.Clear();
+        listPanel.SetActive(false);
+        actualMoney = initialMoney;
+        UpdateMoneyText();
+
+        totalPrice = 0;
     }
 
-    public void AddProduct(string productName)
+    public void AddProduct(ProductData item)
+    {        
+        products.Add(item);       
+    }
+    
+    public void RemoveProduct(ProductData item)
     {
-        for (int i = 0; i < shoppingList.Length; i++)
-        {
-            if (shoppingList[i] == null)
-            {
-                shoppingList[i] = productName;
-                break;
-            }
+        if (products.Contains(item)) 
+        { 
+            products.Remove(item);
         }
     }
 
-    public void RemoveProduct(string productName)
+    public void UpdateMoneyText()
     {
-        for (int i = 0; i < shoppingList.Length; i++)
+        moneyText.text = "$" + actualMoney.ToString();
+    }
+
+    public void BillCalculate()
+    {
+        totalText.text = "$" + totalPrice.ToString();
+        cashText.text = "$" + initialMoney.ToString();
+        for (int i = 0; i < products.Count; i++)
         {
-            if (shoppingList[i] == productName)
-            {
-                shoppingList[i] = null;
-                break;
-            }
+            listText.text += "<br>" + products[i].productName + "   " + "$" + products[i].productPrice + "<br>";            
         }
+
+        actualMoney = totalPrice - initialMoney;   
+        
+        if (actualMoney < 0)
+        {
+            actualMoney *= -1;
+        }
+        
+        if (initialMoney < totalPrice)
+        {
+            notMoney.SetActive(true);
+        }
+
+        changeText.text = "$" + actualMoney.ToString();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Product"))
-        {
-            if (other.gameObject.CompareTag("Product"))
-            {
-                AddProduct(other.GetComponent<ProductData>().productName);
-            }
+        if (other.GetComponent<ProductData>())
+        {           
+            AddProduct(other.GetComponent<ProductData>());
+            totalPrice += other.GetComponent<ProductData>().productPrice;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Product"))
+        if (other.GetComponent<ProductData>())
         {
-            RemoveProduct(other.GetComponent<ProductData>().productName);
+            RemoveProduct(other.GetComponent<ProductData>());
+            totalPrice -= other.GetComponent<ProductData>().productPrice;
         }
     }
 }
