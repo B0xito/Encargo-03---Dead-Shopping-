@@ -13,14 +13,21 @@ public class CashRegister : MonoBehaviour
         shoppingCart = other.GetComponentInChildren<ShoppingCart>();
         if (shoppingCart)
         {
-            shoppingCart.listPanel.SetActive(true);
-            shoppingCart.BillCalculate();
-            shoppingCart.UpdateMoneyText();
-            Time.timeScale = 0;
+            if (shoppingCart.products.Count > 0)
+            {
+                shoppingCart.listPanel.SetActive(true);
+                shoppingCart.BillCalculate();
+                shoppingCart.UpdateMoneyText();
+            }
         }
     }
 
-    
+    private void OnTriggerExit(Collider other)
+    {
+        shoppingCart = null;
+    }
+
+
 
 
 }

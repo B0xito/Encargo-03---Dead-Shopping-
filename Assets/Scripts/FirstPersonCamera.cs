@@ -67,7 +67,7 @@ public class FirstPersonCamera : MonoBehaviour
             {
                 product = hit.transform.gameObject;
                 productNameTxt.text = product.GetComponent<ProductData>().productName;
-                priceText.text = product.GetComponent<ProductData>().productPrice.ToString();
+                priceText.text = "$" + product.GetComponent<ProductData>().productPrice.ToString();
                 pricePanel.SetActive(true);
             }
 

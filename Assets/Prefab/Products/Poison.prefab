@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6250436544082468027}
   - component: {fileID: 2226319486989627766}
   - component: {fileID: 325392314792267961}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Poison
-  m_TagString: Untagged
+  m_TagString: Product
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,7 +134,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &325392314792267961
 MonoBehaviour:

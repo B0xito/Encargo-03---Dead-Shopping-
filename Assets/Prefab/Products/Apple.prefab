@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3205617899936530123}
   - component: {fileID: 9093860961119910987}
   - component: {fileID: 2976364140553009006}
-  - component: {fileID: 8511599659914139175}
   - component: {fileID: 1101678519898964038}
+  - component: {fileID: 8511599659914139175}
   - component: {fileID: 8062758327905566094}
   m_Layer: 3
   m_Name: Apple
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7389682792781745397}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.072, z: 3.25}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -88,6 +88,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1101678519898964038
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7389682792781745397}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.19629455, y: 0.19075339, z: 0.19629455}
+  m_Center: {x: 0, y: 0.09537669, z: 0}
 --- !u!54 &8511599659914139175
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -115,27 +136,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &1101678519898964038
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7389682792781745397}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.19629455, y: 0.19075339, z: 0.19629455}
-  m_Center: {x: 0, y: 0.09537669, z: 0}
 --- !u!114 &8062758327905566094
 MonoBehaviour:
   m_ObjectHideFlags: 0

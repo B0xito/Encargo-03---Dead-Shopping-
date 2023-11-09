@@ -58,7 +58,7 @@ public class ShoppingCart : MonoBehaviour
         cashText.text = "$" + initialMoney.ToString();
         for (int i = 0; i < products.Count; i++)
         {
-            listText.text += "<br>" + products[i].productName + "   " + "$" + products[i].productPrice + "<br>";            
+            listText.text += "<br>" + products[i].productName + "\t" + "$" + products[i].productPrice + "<br>";            
         }
 
         actualMoney = totalPrice - initialMoney;   
